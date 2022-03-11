@@ -29,7 +29,11 @@ def song_detail(request, pk):
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        return Response('ok')
+        serializer = SongSerializer(song, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
     
     elif request.method == 'DELETE':
-        return Response('ok')
+        song.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
