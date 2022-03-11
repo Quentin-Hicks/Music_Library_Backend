@@ -12,7 +12,18 @@ def songs_list(request):
         songs = Song.objects.all()
         serializer = SongSerializer(songs, many=True)
         return Response(serializer.data)
+    
+    elif request.method == 'POST':
+        
+        return Response('ok')
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def song_detail(request, pk):
-    print('ok')
+    if request.method == 'GET':
+        return Response('ok')
+
+    elif request.method == 'PUT':
+        return Response('ok')
+    
+    elif request.method == 'DELETE':
+        return Response('ok')
